@@ -3,8 +3,6 @@ set(CMAKE_CXX_STANDARD 14)
 set(SOURCE_FILES
         main.cpp
         DemoTest.cpp
-        NewTest.cpp
-        Tutorial.cpp
         YourCodeGoesHere.h)
 add_executable(${TEST_NAME} ${SOURCE_FILES})
 target_link_libraries(${TEST_NAME} StarterProject.code ApprovalTests::ApprovalTests Catch2::Catch2)
