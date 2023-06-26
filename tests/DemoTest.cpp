@@ -2,14 +2,11 @@
 
 #include "ApprovalTests.hpp"
 #include "catch2/catch.hpp"
+#include "YourCodeGoesHere.h"
 #include <ostream>
 
 using namespace ApprovalTests;
 
-TEST_CASE("DemoSimpleTestCase")
-{
-    Approvals::verify("Some\nMulti-line\noutput");
-}
 
 struct Demo
 {
@@ -26,12 +23,16 @@ struct Demo
 TEST_CASE("DemoCombinationTestCase")
 {
     // See https://github.com/approvals/ApprovalTests.cpp/blob/master/doc/TestingCombinations.md#top
-    std::vector<int> evens{2, 4, 6, 8, 10};
-    std::vector<int> odds{1, 3, 5, 7, 9};
+    std::vector<int> dice{1, 2, 3, 4, 5,6};
+    std::vector<ScoringType> types{Pair,TwoPair, FullHouse, FiveOfAKind};
     CombinationApprovals::verifyAllCombinations(
-        [](int i, int j) {
-            return Demo{i, j};
+        [](ScoringType s, int d1, int d2, int d3, int d4, int d5) {
+            return BigDiceGame::CalculateScore(s,d1,d2,d3,d4,d5);
         },
-        evens,
-        odds);
+        types,
+        dice,
+        dice,
+        dice,
+        dice,
+        dice);
 }
